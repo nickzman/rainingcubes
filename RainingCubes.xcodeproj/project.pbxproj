@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		E0767CDD1B925C4C007A9DE1 /* RainingCubesView.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CDC1B925C4C007A9DE1 /* RainingCubesView.h */; };
 		E0767CDF1B925C4C007A9DE1 /* RainingCubesView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0767CDE1B925C4C007A9DE1 /* RainingCubesView.m */; };
+		E0767CE71B925D9E007A9DE1 /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CE61B925D9E007A9DE1 /* Structs.h */; settings = {ASSET_TAGS = (); }; };
+		E0767CE91B928108007A9DE1 /* SIMDExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CE81B928108007A9DE1 /* SIMDExtensions.h */; settings = {ASSET_TAGS = (); }; };
+		E0767CEC1B9281A7007A9DE1 /* FallingObject.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CEA1B9281A7007A9DE1 /* FallingObject.h */; settings = {ASSET_TAGS = (); }; };
+		E0767CED1B9281A7007A9DE1 /* FallingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEB1B9281A7007A9DE1 /* FallingObject.m */; settings = {ASSET_TAGS = (); }; };
+		E0767CEF1B928398007A9DE1 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEE1B928398007A9DE1 /* Shaders.metal */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,6 +21,11 @@
 		E0767CDC1B925C4C007A9DE1 /* RainingCubesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RainingCubesView.h; sourceTree = "<group>"; };
 		E0767CDE1B925C4C007A9DE1 /* RainingCubesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RainingCubesView.m; sourceTree = "<group>"; };
 		E0767CE01B925C4C007A9DE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0767CE61B925D9E007A9DE1 /* Structs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = "<group>"; };
+		E0767CE81B928108007A9DE1 /* SIMDExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMDExtensions.h; sourceTree = "<group>"; };
+		E0767CEA1B9281A7007A9DE1 /* FallingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallingObject.h; sourceTree = "<group>"; };
+		E0767CEB1B9281A7007A9DE1 /* FallingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallingObject.m; sourceTree = "<group>"; };
+		E0767CEE1B928398007A9DE1 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,8 +58,13 @@
 		E0767CDB1B925C4C007A9DE1 /* RainingCubes */ = {
 			isa = PBXGroup;
 			children = (
+				E0767CEA1B9281A7007A9DE1 /* FallingObject.h */,
+				E0767CEB1B9281A7007A9DE1 /* FallingObject.m */,
 				E0767CDC1B925C4C007A9DE1 /* RainingCubesView.h */,
 				E0767CDE1B925C4C007A9DE1 /* RainingCubesView.m */,
+				E0767CEE1B928398007A9DE1 /* Shaders.metal */,
+				E0767CE81B928108007A9DE1 /* SIMDExtensions.h */,
+				E0767CE61B925D9E007A9DE1 /* Structs.h */,
 				E0767CE01B925C4C007A9DE1 /* Info.plist */,
 			);
 			path = RainingCubes;
@@ -63,6 +78,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0767CDD1B925C4C007A9DE1 /* RainingCubesView.h in Headers */,
+				E0767CEC1B9281A7007A9DE1 /* FallingObject.h in Headers */,
+				E0767CE91B928108007A9DE1 /* SIMDExtensions.h in Headers */,
+				E0767CE71B925D9E007A9DE1 /* Structs.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0767CEF1B928398007A9DE1 /* Shaders.metal in Sources */,
+				E0767CED1B9281A7007A9DE1 /* FallingObject.m in Sources */,
 				E0767CDF1B925C4C007A9DE1 /* RainingCubesView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,7 +195,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -211,7 +231,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
