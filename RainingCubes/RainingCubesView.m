@@ -272,9 +272,15 @@ float cubeVertexData[216] =
 	_vertexBuffer = [_device newBufferWithBytes:cubeVertexData length:sizeof(cubeVertexData) options:MTLResourceOptionCPUCacheModeDefault];
 	_vertexBuffer.label = @"Vertices";
 	
+	if (_sampleCount > 1UL && ![_device supportsTextureSampleCount:_sampleCount])
+	{
+		NSLog(@"Warning: Device %@ does not support a sample count of %lu. Disabling multi-sample support.", _device, (unsigned long)_sampleCount);
+		_sampleCount = 1UL;
+	}
+	
 	// Create a reusable pipeline state:
 	pipelineStateDescriptor.label = @"RainingCubesPipeline";
-	pipelineStateDescriptor.sampleCount = 1UL;
+	pipelineStateDescriptor.sampleCount = _sampleCount;
 	pipelineStateDescriptor.vertexFunction = vertexProgram;
 	pipelineStateDescriptor.fragmentFunction = fragmentProgram;
 	pipelineStateDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormatBGRA8Unorm;
@@ -412,6 +418,7 @@ float cubeVertexData[216] =
 			
 			msaaTextureDesc.textureType = MTLTextureType2DMultisample;
 			msaaTextureDesc.sampleCount = _sampleCount;
+			msaaTextureDesc.resourceOptions = MTLResourceStorageModePrivate;	// multi-sample textures aren't allowed to be shared
 			_msaaTex = [_device newTextureWithDescriptor:msaaTextureDesc];
 			_msaaTex.label = @"MSAA Texture";
 		}
@@ -422,11 +429,13 @@ float cubeVertexData[216] =
 	else	// no MSAA - store attachments that will be presented to the screen
 		colorAttachment.storeAction = MTLStoreActionStore;
 	
-	if (!_depthTex || (_depthTex && (_depthTex.width != texture.width || _depthTex.height != texture.height)))
+	if (!_depthTex || (_depthTex && (_depthTex.width != texture.width || _depthTex.height != texture.height || _depthTex.sampleCount != _sampleCount)))
 	{
 		// If we need a depth texture and don't have one, or if the depth texture we have is the wrong size, then allocate one of the proper size:
 		MTLTextureDescriptor *desc = [MTLTextureDescriptor texture2DDescriptorWithPixelFormat:MTLPixelFormatDepth32Float width:texture.width height:texture.height mipmapped:NO];
 		
+		desc.textureType = (_sampleCount > 1) ? MTLTextureType2DMultisample : MTLTextureType2D;
+		desc.sampleCount = _sampleCount;
 		desc.resourceOptions = MTLResourceStorageModePrivate;	// Metal requires depth textures to use GPU memory exclusively
 		_depthTex = [_device newTextureWithDescriptor:desc];
 		_depthTex.label = @"Depth";
