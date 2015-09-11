@@ -10,6 +10,7 @@
 #import "FallingObject.h"
 #import "SIMDExtensions.h"
 #import "Structs.h"
+#import "RainingCubesConfigureWindowController.h"
 @import Metal;
 @import QuartzCore;
 @import simd;
@@ -66,6 +67,7 @@ float cubeVertexData[216] =
 
 @interface RainingCubesView (Private)
 - (void)rc_loadAssets;
+- (void)rc_loadUserDefaults;
 - (void)rc_render;
 - (void)rc_reshape;
 - (void)rc_setupMetal:(NSArray *)devices;
@@ -101,11 +103,15 @@ float cubeVertexData[216] =
 	id <MTLTexture> _depthTex;
 	id <MTLTexture> _msaaTex;
 	NSUInteger _sampleCount;
+	BOOL _mainScreenOnly;
 	
 	// Uniforms:
 	matrix_float4x4 _projectionMatrix;
 	matrix_float4x4 _viewMatrix;
 	uniforms_t _uniform_buffer;
+	
+	// User defaults GUI:
+	RainingCubesConfigureWindowController *_configureController;
 }
 
 - (instancetype)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview
@@ -153,24 +159,22 @@ float cubeVertexData[216] =
 			}
 			else
 			{
-				// Set up our initial state:
-				NSMutableArray *fallingObjects = [[NSMutableArray alloc] init];
-				NSUInteger i;
-				
 				_constantDataBufferIndex = 0U;
 				_inflight_semaphore = dispatch_semaphore_create(g_max_inflight_buffers);
-				for (i = 0UL ; i < 1000UL ; i++)
-				{
-					[fallingObjects addObject:[[FallingObject alloc] init]];
-				}
-				_fallingObjects = [fallingObjects copy];
 				
-				[self rc_setupMetal:devices];
-				[self rc_loadAssets];
+				[self rc_setupMetal:devices];	// set up Metal
+				[self rc_loadUserDefaults];	// load user defaults; create buffers
+				//[self rc_loadAssets];	// load the shaders; create buffers; set up pipeline & depth states
 			}
 		}
 	}
 	return self;
+}
+
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -185,12 +189,23 @@ float cubeVertexData[216] =
 {
 	[super viewWillMoveToWindow:newWindow];
 	
+	// If _mainScreenOnly is on, and this isn't the main screen, then shut down drawing by releasing the device:
+	if (_mainScreenOnly && newWindow.screen != [NSScreen mainScreen])
+		_device = nil;
+	
 	// If newWindow changes screens for any reason, then we want to know about that so we can update the layer size if necessary:
 	if (_screenChangeObserver)
 		[[NSNotificationCenter defaultCenter] removeObserver:_screenChangeObserver];
 	_screenChangeObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSWindowDidChangeBackingPropertiesNotification object:newWindow queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *aNotification) {
 		_layerSizeDidUpdate = YES;
 	}];
+}
+
+
+- (void)startAnimation
+{
+	[super startAnimation];
+	_firstDrawOccurred = NO;	// reset the draw timer every time the animation restarts
 }
 
 
@@ -235,14 +250,33 @@ float cubeVertexData[216] =
 	}
 }
 
+
 - (BOOL)hasConfigureSheet
 {
-    return NO;
+	return _device != nil;	// if we are going to draw more than an error message, then we also have a configure sheet
 }
 
-- (NSWindow*)configureSheet
+
+- (NSWindow *)configureSheet
 {
-    return nil;
+	if (!_configureController)
+	{
+		_configureController = [[RainingCubesConfigureWindowController alloc] initWithWindowNibName:@"RainingCubesConfigureWindowController"];
+		_configureController.device = _device;
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:@"RCUserDefaultsChangedNotification" object:nil];
+	}
+	return _configureController.window;
+}
+
+
+- (void)userDefaultsChanged:(NSNotification *)aNotification
+{
+	[self rc_loadUserDefaults];
+	if (self.animating)
+	{
+		[self stopAnimation];
+		[self startAnimation];
+	}
 }
 
 @end
@@ -253,20 +287,11 @@ float cubeVertexData[216] =
 {
 	NSParameterAssert(_defaultLibrary);	// sanity check: the library must be set up first
 	
-	NSUInteger i;
-	size_t maxBufferBytesPerFrame = sizeof(uniforms_t)*_fallingObjects.count;
 	id <MTLFunction> fragmentProgram = [_defaultLibrary newFunctionWithName:@"lighting_fragment"];	// our fragment shader
 	id <MTLFunction> vertexProgram = [_defaultLibrary newFunctionWithName:@"lighting_vertex"];	// and our vertex shader
 	MTLRenderPipelineDescriptor *pipelineStateDescriptor = [[MTLRenderPipelineDescriptor alloc] init];
 	MTLDepthStencilDescriptor *depthStateDesc = [[MTLDepthStencilDescriptor alloc] init];
 	NSError *err = nil;
-	
-	// Allocate one region of memory for the uniform buffer:
-	for (i = 0UL ; i < g_max_inflight_buffers ; i++)
-	{
-		_dynamicConstantBuffer[i] = [_device newBufferWithLength:maxBufferBytesPerFrame options:0];
-		_dynamicConstantBuffer[i].label = [NSString stringWithFormat:@"ConstantBuffer%lu", (unsigned long)i];
-	}
 	
 	// Set up the vertex buffers:
 	_vertexBuffer = [_device newBufferWithBytes:cubeVertexData length:sizeof(cubeVertexData) options:MTLResourceOptionCPUCacheModeDefault];
@@ -296,6 +321,49 @@ float cubeVertexData[216] =
 	depthStateDesc.depthCompareFunction = MTLCompareFunctionLess;
 	depthStateDesc.depthWriteEnabled = YES;
 	_depthState = [_device newDepthStencilStateWithDescriptor:depthStateDesc];
+}
+
+
+- (void)rc_loadUserDefaults
+{
+	ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass:self.class] bundleIdentifier]];
+	NSInteger i, count;
+	NSMutableArray *fallingObjects = [[NSMutableArray alloc] init];
+	size_t maxBufferBytesPerFrame;
+	NSUInteger newSampleCount;
+	
+	// Set up some default values if none are stored:
+	if (![defaults objectForKey:@"RCNumberOfCubes"])
+		[defaults setInteger:100L forKey:@"RCNumberOfCubes"];
+	if (![defaults objectForKey:@"RCFSAASamples"])
+		[defaults setInteger:1L forKey:@"RCFSAASamples"];
+	if (![defaults objectForKey:@"RCMainScreenOnly"])
+		[defaults setBool:NO forKey:@"RCMainScreenOnly"];
+	
+	// Set up the array of objects:
+	count = [defaults integerForKey:@"RCNumberOfCubes"];
+	for (i = 0L ; i < count ; i++)
+	{
+		[fallingObjects addObject:[[FallingObject alloc] init]];
+	}
+	_fallingObjects = [fallingObjects copy];
+	
+	// Set up the constant buffers to be shared with the GPU:
+	maxBufferBytesPerFrame = sizeof(uniforms_t)*_fallingObjects.count;
+	for (i = 0UL ; i < g_max_inflight_buffers ; i++)
+	{
+		_dynamicConstantBuffer[i] = [_device newBufferWithLength:maxBufferBytesPerFrame options:0];
+		_dynamicConstantBuffer[i].label = [NSString stringWithFormat:@"ConstantBuffer%lu", (unsigned long)i];
+	}
+	
+	// Load in the other preferences:
+	newSampleCount = [defaults integerForKey:@"RCFSAASamples"];
+	if (newSampleCount != _sampleCount)	// we _must_ build a new pipeline state if the multi-sampling preference changed
+	{
+		_sampleCount = newSampleCount;
+		[self rc_loadAssets];
+	}
+	_mainScreenOnly = [defaults integerForKey:@"RCMainScreenOnly"];
 }
 
 
