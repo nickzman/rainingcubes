@@ -9,8 +9,6 @@
 #import "FallingObject.h"
 #import "SIMDExtensions.h"
 
-static float gMaxDepth;
-
 @implementation FallingObject
 {
 	matrix_float4x4 _startLocation;
@@ -18,23 +16,19 @@ static float gMaxDepth;
 	float _rotation;
 	vector_float3 _rotationConstants;
 	float _acceleration;
-}
-
-+ (void)initialize
-{
-	static BOOL alreadyInitialized = NO;
 	
-	if (alreadyInitialized)
-		return;
-	// FIXME: Replace 1000.0f with the max # of falling objects later
-	gMaxDepth = 10.0f+(1000.0f/80.0f);
+	float _minDepth;
+	float _maxDepth;
 }
 
-- (id)init
+
+- (id)initWithMinDepth:(float)minDepth maxDepth:(float)maxDepth
 {
 	self = [super init];
 	if (self)
 	{
+		_minDepth = minDepth;
+		_maxDepth = maxDepth;
 		[self reset:YES];
 	}
 	return self;
@@ -52,7 +46,7 @@ FOUNDATION_STATIC_INLINE float RandomFloatBetween(float a, float b)
 
 - (void)reset:(BOOL)firstTime
 {
-	float randomZ = RandomFloatBetween(5.0f, gMaxDepth);
+	float randomZ = RandomFloatBetween(_minDepth, _maxDepth);
 	float randomX = RandomFloatBetween(-randomZ, randomZ);
 	
 	if (firstTime)

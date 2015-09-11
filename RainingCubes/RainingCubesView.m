@@ -331,6 +331,7 @@ float cubeVertexData[216] =
 	NSMutableArray *fallingObjects = [[NSMutableArray alloc] init];
 	size_t maxBufferBytesPerFrame;
 	NSUInteger newSampleCount;
+	float minDepth, maxDepth;
 	
 	// Set up some default values if none are stored:
 	if (![defaults objectForKey:@"RCNumberOfCubes"])
@@ -342,9 +343,11 @@ float cubeVertexData[216] =
 	
 	// Set up the array of objects:
 	count = [defaults integerForKey:@"RCNumberOfCubes"];
+	minDepth = 5.0f+(count/800.0f);
+	maxDepth = 10.0f+(count/80.0f);
 	for (i = 0L ; i < count ; i++)
 	{
-		[fallingObjects addObject:[[FallingObject alloc] init]];
+		[fallingObjects addObject:[[FallingObject alloc] initWithMinDepth:minDepth maxDepth:maxDepth]];
 	}
 	_fallingObjects = [fallingObjects copy];
 	
@@ -358,7 +361,7 @@ float cubeVertexData[216] =
 	
 	// Load in the other preferences:
 	newSampleCount = [defaults integerForKey:@"RCFSAASamples"];
-	if (newSampleCount != _sampleCount)	// we _must_ build a new pipeline state if the multi-sampling preference changed
+	if (newSampleCount != _sampleCount)	// we _must_ build a new pipeline state if the multi-sampling preference changed, or we might hard-lock the window server
 	{
 		_sampleCount = newSampleCount;
 		[self rc_loadAssets];
