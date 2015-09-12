@@ -508,6 +508,7 @@ float cubeVertexData[216] =
 		desc.textureType = (_sampleCount > 1) ? MTLTextureType2DMultisample : MTLTextureType2D;
 		desc.sampleCount = _sampleCount;
 		desc.resourceOptions = MTLResourceStorageModePrivate;	// Metal requires depth textures to use GPU memory exclusively
+		desc.usage = MTLTextureUsageRenderTarget;	// depth attachment textures are used to render the target
 		_depthTex = [_device newTextureWithDescriptor:desc];
 		_depthTex.label = @"Depth";
 		
