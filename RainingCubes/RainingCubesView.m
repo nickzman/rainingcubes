@@ -126,7 +126,7 @@ float cubeVertexData[216] =
 		{
 			NSTextField *noMetalField = [[NSTextField alloc] initWithFrame:CGRectZero];
 			
-			noMetalField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"Your version of the OS does not support Metal.\n%@ requires OS X 10.11 or later.", @"Text we display to the user if they try running the screen saver on OS X Yosemite or earlier"), [[NSBundle bundleForClass:self.class] objectForInfoDictionaryKey:@"CFBundleName"]];
+			noMetalField.stringValue = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"Your version of the OS does not support Metal.\n%@ requires OS X 10.11 or later.", @"RainingCubes", [NSBundle bundleForClass:self.class], @"Text we display to the user if they try running the screen saver on OS X Yosemite or earlier"), [[NSBundle bundleForClass:self.class] objectForInfoDictionaryKey:@"CFBundleName"]];
 			noMetalField.font = [NSFont systemFontOfSize:[NSFont systemFontSize]];
 			noMetalField.alignment = NSCenterTextAlignment;
 			noMetalField.textColor = [NSColor whiteColor];
@@ -146,7 +146,7 @@ float cubeVertexData[216] =
 			{
 				NSTextField *noMetalField = [[NSTextField alloc] initWithFrame:CGRectZero];
 				
-				noMetalField.stringValue = [NSString stringWithFormat:NSLocalizedString(@"No Metal devices could be found.\n%@ requires a GPU that supports\nMetal in order to render.\nThis includes all Macs made since mid-2012.\nAlso, Metal won’t work in a VM.", @"Text we display to the user if they try running the screen saver on a computer with no Metal devices available"), [[NSBundle bundleForClass:self.class] objectForInfoDictionaryKey:@"CFBundleName"]];
+				noMetalField.stringValue = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"No Metal devices could be found.\n%@ requires a GPU that supports\nMetal in order to render.\nThis includes all Macs made since mid-2012.\nAlso, Metal won’t work in a VM.", @"RainingCubes", [NSBundle bundleForClass:self.class], @"Text we display to the user if they try running the screen saver on a computer with no Metal devices available"), [[NSBundle bundleForClass:self.class] objectForInfoDictionaryKey:@"CFBundleName"]];
 				noMetalField.font = [NSFont systemFontOfSize:[NSFont systemFontSize]];
 				noMetalField.alignment = NSCenterTextAlignment;
 				noMetalField.textColor = [NSColor whiteColor];
