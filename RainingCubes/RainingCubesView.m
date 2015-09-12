@@ -191,7 +191,11 @@ float cubeVertexData[216] =
 	
 	// If _mainScreenOnly is on, and this isn't the main screen, then shut down drawing by releasing the device:
 	if (_mainScreenOnly && newWindow.screen != [NSScreen mainScreen])
+	{
 		_device = nil;
+		self.layer = [CALayer layer];
+		self.layer.backgroundColor = [[NSColor blackColor] CGColor];
+	}
 	
 	// If newWindow changes screens for any reason, then we want to know about that so we can update the layer size if necessary:
 	if (_screenChangeObserver)
