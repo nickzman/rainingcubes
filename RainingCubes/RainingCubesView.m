@@ -490,6 +490,7 @@ float cubeVertexData[216] =
 			msaaTextureDesc.textureType = MTLTextureType2DMultisample;
 			msaaTextureDesc.sampleCount = _sampleCount;
 			msaaTextureDesc.resourceOptions = MTLResourceStorageModePrivate;	// multi-sample textures aren't allowed to be shared
+			msaaTextureDesc.usage = MTLTextureUsageRenderTarget;	// yes, this texture is for rendering
 			_msaaTex = [_device newTextureWithDescriptor:msaaTextureDesc];
 			_msaaTex.label = @"MSAA Texture";
 		}
