@@ -12,12 +12,16 @@
 @interface RainingCubesConfigureWindowController : NSWindowController
 @property(retain) id <MTLDevice> device;
 
-@property(assign) IBOutlet NSSlider *numberOfCubesSlider;
 @property(assign) IBOutlet NSPopUpButton *FSAAPopUp;
+@property(assign) IBOutlet NSTextField *GPUTxt;
 @property(assign) IBOutlet NSButton *mainScreenOnlyButton;
+@property(assign) IBOutlet NSSlider *numberOfCubesSlider;
+@property(assign) IBOutlet NSTextField *numberOfCubesTxt;
+@property(assign) IBOutlet NSButton *preferDiscreteGPUButton;
 
-- (IBAction)numberOfCubesAction:(id)sender;
 - (IBAction)FSAAAction:(id)sender;
 - (IBAction)mainScreenOnlyAction:(id)sender;
+- (IBAction)numberOfCubesAction:(id)sender;
 - (IBAction)okayAction:(id)sender;
+- (IBAction)preferDiscreteGPUAction:(id)sender;
 @end

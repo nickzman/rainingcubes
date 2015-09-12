@@ -36,6 +36,9 @@
 	[self.FSAAPopUp selectItemWithTag:[defaults integerForKey:@"RCFSAASamples"]];
 	
 	self.numberOfCubesSlider.integerValue = [defaults integerForKey:@"RCNumberOfCubes"];
+	self.numberOfCubesTxt.integerValue = self.numberOfCubesSlider.integerValue;
+	self.GPUTxt.stringValue = self.device.name;
+	self.preferDiscreteGPUButton.state = [defaults boolForKey:@"RCPreferDiscreteGPU"] ? NSOnState : NSOffState;
 	self.mainScreenOnlyButton.state = [defaults boolForKey:@"RCMainScreenOnly"] ? NSOnState : NSOffState;
 }
 
@@ -45,6 +48,7 @@
 	ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass:self.class] bundleIdentifier]];
 	
 	[defaults setInteger:[sender integerValue] forKey:@"RCNumberOfCubes"];
+	self.numberOfCubesTxt.integerValue = self.numberOfCubesSlider.integerValue;
 }
 
 
@@ -53,6 +57,14 @@
 	ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass:self.class] bundleIdentifier]];
 	
 	[defaults setInteger:[sender selectedTag] forKey:@"RCFSAASamples"];
+}
+
+
+- (IBAction)preferDiscreteGPUAction:(id)sender
+{
+	ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass:self.class] bundleIdentifier]];
+	
+	[defaults setBool:[sender state] == NSOnState forKey:@"RCPreferDiscreteGPU"];
 }
 
 

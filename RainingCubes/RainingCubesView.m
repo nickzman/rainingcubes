@@ -440,16 +440,23 @@ float cubeVertexData[216] =
 - (void)rc_setupMetal:(NSArray *)devices
 {
 	NSError *err = nil;
+	ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass:self.class] bundleIdentifier]];
+	BOOL preferDiscreteDevice = [defaults boolForKey:@"RCPreferDiscreteGPU"];
 	
-	// Prefer a low-power device (e.g. an integrated GPU) if we can find it. Otherwise, just use what's available.
-	[devices enumerateObjectsUsingBlock:^(id <MTLDevice> prospectiveDevice, NSUInteger i, BOOL *stop) {
-		if (prospectiveDevice.lowPower)
-		{
+	if (preferDiscreteDevice)
+		_device = MTLCreateSystemDefaultDevice();
+	else
+	{
+		// Prefer a low-power device (e.g. an integrated GPU) if we can find it. Otherwise, just use what's available.
+		[devices enumerateObjectsUsingBlock:^(id <MTLDevice> prospectiveDevice, NSUInteger i, BOOL *stop) {
+			if (prospectiveDevice.lowPower)
+			{
+				_device = prospectiveDevice;
+				*stop = YES;
+			}
 			_device = prospectiveDevice;
-			*stop = YES;
-		}
-		_device = prospectiveDevice;
-	}];
+		}];
+	}
 	_commandQueue = [_device newCommandQueue];
 	_defaultLibrary = [_device newLibraryWithFile:[[NSBundle bundleForClass:self.class] pathForResource:@"default" ofType:@"metallib"] error:&err];	// can't use -newDefaultLibrary in a bundle
 	
