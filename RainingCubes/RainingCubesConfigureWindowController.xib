@@ -13,6 +13,7 @@
                 <outlet property="numberOfCubesSlider" destination="gON-ID-esk" id="xkV-PS-x2p"/>
                 <outlet property="numberOfCubesTxt" destination="yQZ-Rb-BZy" id="Ksr-Yx-0XH"/>
                 <outlet property="preferDiscreteGPUButton" destination="5XF-jt-iKZ" id="dGE-aV-eDY"/>
+                <outlet property="versionAndCopyrightTxt" destination="yjZ-zP-YfV" id="Kn2-on-hqu"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -21,14 +22,14 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="222"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="219"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="222"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="219"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftB-4R-1Df">
-                        <rect key="frame" x="20" y="144" width="71" height="17"/>
+                        <rect key="frame" x="28" y="141" width="71" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="# of Cubes" id="6LH-Ga-8zT">
                             <font key="font" metaFont="system"/>
@@ -37,7 +38,7 @@
                         </textFieldCell>
                     </textField>
                     <slider toolTip="The more, the merrier… But every additional object will increase both CPU and GPU usage." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gON-ID-esk">
-                        <rect key="frame" x="95" y="139" width="319" height="25"/>
+                        <rect key="frame" x="103" y="136" width="311" height="25"/>
                         <animations/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="5000" doubleValue="50" tickMarkPosition="above" numberOfTickMarks="10" sliderType="linear" id="USH-hE-Lnf"/>
                         <connections>
@@ -45,7 +46,7 @@
                         </connections>
                     </slider>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ItL-wg-UQm">
-                        <rect key="frame" x="54" y="109" width="37" height="17"/>
+                        <rect key="frame" x="62" y="106" width="37" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="FSAA" id="AB9-Ir-arK">
                             <font key="font" metaFont="system"/>
@@ -54,7 +55,7 @@
                         </textFieldCell>
                     </textField>
                     <button toolTip="Checking this box will make the screen saver only draw on the computer’s main screen." fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VX6-fp-hyz">
-                        <rect key="frame" x="20" y="71" width="129" height="18"/>
+                        <rect key="frame" x="20" y="68" width="129" height="18"/>
                         <animations/>
                         <buttonCell key="cell" type="check" title="Main Screen Only" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Kg5-wf-lep">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -64,23 +65,6 @@
                             <action selector="mainScreenOnlyAction:" target="-2" id="Yi6-cG-lYN"/>
                         </connections>
                     </button>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hYS-xK-utx">
-                        <rect key="frame" x="95" y="104" width="76" height="26"/>
-                        <string key="toolTip">Enabling full-screen anti-aliasing will reduce pixellation in the picture, but decrease GPU performance. Set this to “None” to disable full-screen anti-aliasing.</string>
-                        <animations/>
-                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="wOh-fU-VWY" id="BUz-Lu-gLR">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="KIh-sR-6MR">
-                                <items>
-                                    <menuItem title="None" state="on" id="wOh-fU-VWY"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                        <connections>
-                            <action selector="FSAAAction:" target="-2" id="3i3-ku-rQC"/>
-                        </connections>
-                    </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gUm-LJ-MB9">
                         <rect key="frame" x="407" y="13" width="59" height="32"/>
                         <animations/>
@@ -96,16 +80,17 @@ DQ
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwP-Rt-wZk">
-                        <rect key="frame" x="18" y="185" width="73" height="17"/>
+                        <rect key="frame" x="18" y="182" width="81" height="17"/>
                         <animations/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Active GPU" id="7Ra-d1-Sau">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Metal device" id="7Ra-d1-Sau">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4OM-BI-Zkq">
-                        <rect key="frame" x="95" y="185" width="367" height="17"/>
+                        <rect key="frame" x="103" y="182" width="359" height="17"/>
+                        <string key="toolTip">This is the GPU that will be used to draw the screen saver. It may not be the same as the “current” GPU, but Metal allows multiple GPUs to be in use at once.</string>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Tth-fK-ykm">
                             <font key="font" metaFont="system"/>
@@ -114,7 +99,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5XF-jt-iKZ">
-                        <rect key="frame" x="20" y="51" width="244" height="18"/>
+                        <rect key="frame" x="20" y="48" width="244" height="18"/>
                         <string key="toolTip">Checking this box will improve graphics performance on multi-GPU computers, such as the MacBook Pro, but it will increase battery usage. Changes to this preference will take effect the next time either System Preferences or the screen saver is started.</string>
                         <animations/>
                         <buttonCell key="cell" type="check" title="Prefer the Discrete GPU (if available)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MWS-Fz-Q0H">
@@ -126,11 +111,48 @@ DQ
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yQZ-Rb-BZy">
-                        <rect key="frame" x="418" y="144" width="37" height="17"/>
+                        <rect key="frame" x="418" y="141" width="37" height="17"/>
                         <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="759-Tq-iyn">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="2Tg-er-eTC"/>
                             <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ime-R1-1yF">
+                        <rect key="frame" x="281" y="13" width="126" height="32"/>
+                        <animations/>
+                        <buttonCell key="cell" type="push" title="Default values" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Us-I7-zwf">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="restoreDefaults:" target="-2" id="mrI-hx-Dwo"/>
+                        </connections>
+                    </button>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hYS-xK-utx">
+                        <rect key="frame" x="103" y="101" width="76" height="26"/>
+                        <string key="toolTip">Enabling full-screen anti-aliasing will reduce pixellation in the picture, but decrease GPU performance. Set this to “None” to disable full-screen anti-aliasing.</string>
+                        <animations/>
+                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="wOh-fU-VWY" id="BUz-Lu-gLR">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="KIh-sR-6MR">
+                                <items>
+                                    <menuItem title="None" state="on" id="wOh-fU-VWY"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="FSAAAction:" target="-2" id="3i3-ku-rQC"/>
+                        </connections>
+                    </popUpButton>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yjZ-zP-YfV">
+                        <rect key="frame" x="18" y="20" width="263" height="22"/>
+                        <animations/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a turpis urna." id="r9c-sl-Hbt">
+                            <font key="font" metaFont="system" size="9"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -141,7 +163,7 @@ DQ
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="305" y="342"/>
+            <point key="canvasLocation" x="305" y="340.5"/>
         </window>
     </objects>
 </document>

@@ -18,6 +18,7 @@
 @property(assign) IBOutlet NSSlider *numberOfCubesSlider;
 @property(assign) IBOutlet NSTextField *numberOfCubesTxt;
 @property(assign) IBOutlet NSButton *preferDiscreteGPUButton;
+@property(assign) IBOutlet NSTextField *versionAndCopyrightTxt;
 
 - (IBAction)FSAAAction:(id)sender;
 - (IBAction)mainScreenOnlyAction:(id)sender;
