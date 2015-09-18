@@ -56,7 +56,7 @@ FOUNDATION_STATIC_INLINE float RandomFloatBetween(float a, float b)
 		_startLocation = matrix_from_translation(randomX, randomY, randomZ);
 		_rotation = RandomFloatBetween(0.0f, 1.0f);
 		_rotationConstants = (vector_float3){RandomFloatBetween(-2.0f, 2.0f), RandomFloatBetween(-2.0f, 2.0f), RandomFloatBetween(-2.0f, 2.0f)};
-		self.ambientColor = (vector_float4){RandomFloatBetween(0.0f, 1.0f), RandomFloatBetween(0.0f, 1.0f), RandomFloatBetween(0.0f, 1.0f), 1.0f};
+		self.ambientColor = (vector_float4){RandomFloatBetween(0.0f, 2.0f/3.0f), RandomFloatBetween(0.0f, 2.0f/3.0f), RandomFloatBetween(0.0f, 2.0f/3.0f), 1.0f};
 		self.diffuseColor = (vector_float4){self.ambientColor.x/0.4f, self.ambientColor.y/0.4f, self.ambientColor.z/0.4f, 1.0f};
 	}
 	else
