@@ -8,12 +8,10 @@
 
 #import <Foundation/Foundation.h>
 @import simd;
+#import "Structs.h"
 
 @interface FallingObject : NSObject
-@property(assign, nonatomic) vector_float4 ambientColor;
-@property(assign, nonatomic) vector_float4 diffuseColor;
-
 - (id)initWithMinDepth:(float)minDepth maxDepth:(float)maxDepth;
 
-- (matrix_float4x4)updatedModelViewMatrixWithTimeDelta:(CFTimeInterval)timeDelta viewMatrix:(matrix_float4x4)viewMatrix;
+- (void)updateUniforms:(uniforms_t *)uniforms withTimeDelta:(CFTimeInterval)timeDelta projectionMatrix:(matrix_float4x4)projectionMatrix;
 @end

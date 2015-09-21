@@ -19,6 +19,9 @@
 	
 	float _minDepth;
 	float _maxDepth;
+	
+	vector_float4 _ambientColor;
+	vector_float4 _diffuseColor;
 }
 
 
@@ -56,8 +59,8 @@ FOUNDATION_STATIC_INLINE float RandomFloatBetween(float a, float b)
 		_startLocation = matrix_from_translation(randomX, randomY, randomZ);
 		_rotation = RandomFloatBetween(0.0f, 1.0f);
 		_rotationConstants = (vector_float3){RandomFloatBetween(-2.0f, 2.0f), RandomFloatBetween(-2.0f, 2.0f), RandomFloatBetween(-2.0f, 2.0f)};
-		self.ambientColor = (vector_float4){RandomFloatBetween(0.0f, 2.0f/3.0f), RandomFloatBetween(0.0f, 2.0f/3.0f), RandomFloatBetween(0.0f, 2.0f/3.0f), 1.0f};
-		self.diffuseColor = (vector_float4){self.ambientColor.x/0.4f, self.ambientColor.y/0.4f, self.ambientColor.z/0.4f, 1.0f};
+		_ambientColor = (vector_float4){RandomFloatBetween(0.0f, 2.0f/3.0f), RandomFloatBetween(0.0f, 2.0f/3.0f), RandomFloatBetween(0.0f, 2.0f/3.0f), 1.0f};
+		_diffuseColor = (vector_float4){_ambientColor.x/0.4f, _ambientColor.y/0.4f, _ambientColor.z/0.4f, 1.0f};
 	}
 	else
 		_startLocation = matrix_from_translation(randomX, randomZ, randomZ);
@@ -66,20 +69,26 @@ FOUNDATION_STATIC_INLINE float RandomFloatBetween(float a, float b)
 }
 
 
-- (matrix_float4x4)updatedModelViewMatrixWithTimeDelta:(CFTimeInterval)timeDelta viewMatrix:(matrix_float4x4)viewMatrix
+- (void)updateUniforms:(uniforms_t *)uniforms withTimeDelta:(CFTimeInterval)timeDelta projectionMatrix:(matrix_float4x4)projectionMatrix
 {
 	matrix_float4x4 baseMV;
 	matrix_float4x4 modelViewMatrix;
+	matrix_float4x4 viewMatrix = matrix_identity_float4x4;
 	
-	_currentLocation.columns[3].y -= timeDelta*2.0f+_acceleration;
-	if (_currentLocation.columns[3].y < _currentLocation.columns[3].z*-1.0f)
+	_currentLocation.columns[3].y -= timeDelta*2.0f+_acceleration;	// move the object downward
+	if (_currentLocation.columns[3].y < _currentLocation.columns[3].z*-1.0f)	// if we have moved off-screen, then it's time to reset
 		[self reset:NO];
 	baseMV = matrix_multiply(viewMatrix, _currentLocation);
 	modelViewMatrix = matrix_multiply(baseMV, matrix_from_rotation(_rotation, _rotationConstants.x, _rotationConstants.y, _rotationConstants.z));
 	
+	uniforms->normal_matrix = matrix_invert(matrix_transpose(modelViewMatrix));
+	uniforms->modelview_projection_matrix = matrix_multiply(projectionMatrix, modelViewMatrix);
+	uniforms->ambient_color = _ambientColor;
+	uniforms->diffuse_color = _diffuseColor;
+	
+	// Update the object's position and rotation for next time...
 	_rotation += timeDelta;
 	_acceleration += timeDelta*0.15f;
-	return modelViewMatrix;
 }
 
 @end

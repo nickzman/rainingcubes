@@ -72,7 +72,6 @@ float cubeVertexData[216] =
 - (void)rc_reshape;
 - (void)rc_setupMetal:(NSArray *)devices;
 - (void)rc_setupRenderPassDescriptorForTexture:(id <MTLTexture>)texture;
-- (void)rc_updateDynamicConstantBufferForObject:(FallingObject *)object atIndex:(NSUInteger)i;
 @end
 
 @implementation RainingCubesView
@@ -84,6 +83,7 @@ float cubeVertexData[216] =
 	MTLRenderPassDescriptor *_renderPassDescriptor;
 	
 	// Controller:
+	CVDisplayLinkRef _timer;
 	dispatch_semaphore_t _inflight_semaphore;
 	id <MTLBuffer> _dynamicConstantBuffer[g_max_inflight_buffers];
 	uint8_t _constantDataBufferIndex;
@@ -206,10 +206,45 @@ float cubeVertexData[216] =
 }
 
 
+CVReturn DisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp *inNow, const CVTimeStamp *inOutputTime, CVOptionFlags flagsIn, CVOptionFlags *flagsOut, void *displayLinkContext)
+{
+	RainingCubesView *theView = (__bridge RainingCubesView *)displayLinkContext;
+	
+	[theView animateOneFrame];
+	return kCVReturnSuccess;
+}
+
+
 - (void)startAnimation
 {
-	[super startAnimation];
+	// Metal apparently requires an animation timer that is synchronized with the display's refresh rate. If we use an NSTimer for drawing, which ScreenSaverView does internally, we will get this weird stuttering frame rate problem even though we're feeding a constant 60 FPS to the screen.
+	// But if we use the CVDisplayLink API to run the timer, the video doesn't stutter. So because we run our own timer, we can't invoke the superclass here.
+	if (!_timer)
+	{
+		CGDirectDisplayID screensID = [self.window.screen.deviceDescription[@"NSScreenNumber"] unsignedIntValue];
+		
+		CVDisplayLinkCreateWithCGDisplay(screensID, &_timer);
+		CVDisplayLinkSetOutputCallback(_timer, DisplayLinkCallback, (__bridge void *)self);
+	}
+	CVDisplayLinkStart(_timer);
 	_firstDrawOccurred = NO;	// reset the draw timer every time the animation restarts
+}
+
+
+- (void)stopAnimation
+{
+	if (_timer)
+	{
+		CVDisplayLinkStop(_timer);
+	}
+}
+
+
+- (BOOL)isAnimating
+{
+	if (!_timer)
+		return NO;
+	return CVDisplayLinkIsRunning(_timer);
 }
 
 
@@ -386,7 +421,12 @@ float cubeVertexData[216] =
 	
 	// The documentation says we should prepare for rendering before we ask the layer for a drawable:
 	[_fallingObjects enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(FallingObject *object, NSUInteger i, BOOL *stop) {
-		[self rc_updateDynamicConstantBufferForObject:object atIndex:i];
+		uniforms_t *constantBufferArray = (uniforms_t *)[_dynamicConstantBuffer[_constantDataBufferIndex] contents];
+		uniforms_t constantBuffer;
+		
+		bzero(&constantBuffer, sizeof(uniforms_t));
+		[object updateUniforms:&constantBuffer withTimeDelta:0.015 projectionMatrix:_projectionMatrix];
+		memcpy(&constantBufferArray[i], &constantBuffer, sizeof(uniforms_t));
 	}];
 	
 	// Create a new command buffer for each renderpass to the current drawable:
@@ -405,9 +445,9 @@ float cubeVertexData[216] =
 	// Set context state:
 	[renderEncoder pushDebugGroup:@"DrawCubes"];
 	[renderEncoder setRenderPipelineState:_pipelineState];
-	[renderEncoder setVertexBuffer:_vertexBuffer offset:0 atIndex:0 ];
+	[renderEncoder setVertexBuffer:_vertexBuffer offset:0UL atIndex:0UL];
 	[_fallingObjects enumerateObjectsUsingBlock:^(FallingObject *object, NSUInteger i, BOOL *stop) {
-		[renderEncoder setVertexBuffer:_dynamicConstantBuffer[_constantDataBufferIndex] offset:i*sizeof(uniforms_t) atIndex:1L];
+		[renderEncoder setVertexBuffer:_dynamicConstantBuffer[_constantDataBufferIndex] offset:i*sizeof(uniforms_t) atIndex:1UL];
 		[renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0UL vertexCount:36UL];
 	}];
 	[renderEncoder popDebugGroup];
@@ -529,18 +569,6 @@ float cubeVertexData[216] =
 		_renderPassDescriptor.depthAttachment.clearDepth = 1.0;
 		_renderPassDescriptor.depthAttachment.storeAction = MTLStoreActionDontCare;
 	}
-}
-
-
-- (void)rc_updateDynamicConstantBufferForObject:(FallingObject *)object atIndex:(NSUInteger)i
-{
-	uniforms_t *constantBuffer = (uniforms_t *)[_dynamicConstantBuffer[_constantDataBufferIndex] contents];
-	matrix_float4x4 modelViewMatrix = [object updatedModelViewMatrixWithTimeDelta:_timeSinceLastDrawDelta viewMatrix:_viewMatrix];
-	
-	constantBuffer[i].normal_matrix = matrix_invert(matrix_transpose(modelViewMatrix));
-	constantBuffer[i].modelview_projection_matrix = matrix_multiply(_projectionMatrix, modelViewMatrix);
-	constantBuffer[i].ambient_color = object.ambientColor;
-	constantBuffer[i].diffuse_color = object.diffuseColor;
 }
 
 @end
