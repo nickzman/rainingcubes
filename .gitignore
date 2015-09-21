@@ -1,0 +1,11 @@
+# Ignore Xcode stuff:
+build/*
+xcuserdata/
+
+# Ignore Finder stuff:
+.DS_Store
+profile
+
+# Ignore leftovers from other SCM systems:
+CVS
+.svn
