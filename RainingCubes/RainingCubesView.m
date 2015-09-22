@@ -435,6 +435,11 @@ CVReturn DisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp *in
 	
 	// Obtain a drawable texture for this render pass and set up the renderpass descriptor for the command encoder to render into:
 	drawable = [_metalLayer nextDrawable];
+	if (!drawable)	// if we can't get a drawable, we'll throw an exception setting up the render pass descriptor, so skip the frame entirely
+	{
+		dispatch_semaphore_signal(block_sema);
+		return;
+	}
 	[self rc_setupRenderPassDescriptorForTexture:drawable.texture];
 	
 	// Create a render command encoder so we can render into something:
