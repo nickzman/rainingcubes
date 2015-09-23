@@ -148,7 +148,7 @@ DQ
                             <action selector="FSAAAction:" target="-2" id="3i3-ku-rQC"/>
                         </connections>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yjZ-zP-YfV">
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="yjZ-zP-YfV">
                         <rect key="frame" x="18" y="24" width="323" height="11"/>
                         <animations/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a turpis urna." id="r9c-sl-Hbt">
