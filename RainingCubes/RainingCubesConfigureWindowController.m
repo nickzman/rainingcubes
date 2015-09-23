@@ -26,7 +26,7 @@
 	[self.FSAAPopUp removeAllItems];
 	[self.FSAAPopUp addItemWithTitle:NSLocalizedStringFromTableInBundle(@"None", @"RainingCubes", bundle, @"FSAA pop-up: No FSAA")];
 	self.FSAAPopUp.lastItem.tag = 1L;
-	for (i = 2UL ; i <= 10UL ; i++)
+	for (i = 2UL ; i <= 16UL ; i++)	// 16x multi-sampling is about as high as it gets
 	{
 		if ([self.device supportsTextureSampleCount:i])
 		{
