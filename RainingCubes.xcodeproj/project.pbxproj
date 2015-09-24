@@ -16,9 +16,9 @@
 		E0767CEF1B928398007A9DE1 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEE1B928398007A9DE1 /* Shaders.metal */; settings = {ASSET_TAGS = (); }; };
 		E0DE1ED31BB376230010DDF0 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1ED21BB376230010DDF0 /* thumbnail.png */; settings = {ASSET_TAGS = (); }; };
 		E0DE1ED61BB378450010DDF0 /* RainingCubes.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1ED81BB378450010DDF0 /* RainingCubes.strings */; };
+		E0DE1ED91BB378740010DDF0 /* RainingCubesConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1EDB1BB378740010DDF0 /* RainingCubesConfigureWindowController.xib */; };
 		E0EEC3EE1BA140B300E061D2 /* RainingCubesConfigureWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */; settings = {ASSET_TAGS = (); }; };
 		E0EEC3EF1BA140B300E061D2 /* RainingCubesConfigureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */; settings = {ASSET_TAGS = (); }; };
-		E0EEC3F01BA140B300E061D2 /* RainingCubesConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0EEC3ED1BA140B300E061D2 /* RainingCubesConfigureWindowController.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,9 +33,9 @@
 		E0767CEE1B928398007A9DE1 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		E0DE1ED21BB376230010DDF0 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
 		E0DE1ED71BB378450010DDF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RainingCubes.strings; sourceTree = "<group>"; };
+		E0DE1EDA1BB378740010DDF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RainingCubesConfigureWindowController.xib; sourceTree = "<group>"; };
 		E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RainingCubesConfigureWindowController.h; sourceTree = "<group>"; };
 		E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainingCubesConfigureWindowController.m; sourceTree = "<group>"; };
-		E0EEC3ED1BA140B300E061D2 /* RainingCubesConfigureWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RainingCubesConfigureWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 				E0767CEB1B9281A7007A9DE1 /* FallingObject.m */,
 				E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */,
 				E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */,
-				E0EEC3ED1BA140B300E061D2 /* RainingCubesConfigureWindowController.xib */,
+				E0DE1EDB1BB378740010DDF0 /* RainingCubesConfigureWindowController.xib */,
 				E0767CDC1B925C4C007A9DE1 /* RainingCubesView.h */,
 				E0767CDE1B925C4C007A9DE1 /* RainingCubesView.m */,
 				E0DE1ED81BB378450010DDF0 /* RainingCubes.strings */,
@@ -159,7 +159,7 @@
 			files = (
 				E0DE1ED61BB378450010DDF0 /* RainingCubes.strings in Resources */,
 				E0DE1ED31BB376230010DDF0 /* thumbnail.png in Resources */,
-				E0EEC3F01BA140B300E061D2 /* RainingCubesConfigureWindowController.xib in Resources */,
+				E0DE1ED91BB378740010DDF0 /* RainingCubesConfigureWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +186,14 @@
 				E0DE1ED71BB378450010DDF0 /* en */,
 			);
 			name = RainingCubes.strings;
+			sourceTree = "<group>";
+		};
+		E0DE1EDB1BB378740010DDF0 /* RainingCubesConfigureWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E0DE1EDA1BB378740010DDF0 /* en */,
+			);
+			name = RainingCubesConfigureWindowController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
