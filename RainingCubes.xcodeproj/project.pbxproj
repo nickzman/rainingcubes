@@ -14,6 +14,7 @@
 		E0767CEC1B9281A7007A9DE1 /* FallingObject.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CEA1B9281A7007A9DE1 /* FallingObject.h */; settings = {ASSET_TAGS = (); }; };
 		E0767CED1B9281A7007A9DE1 /* FallingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEB1B9281A7007A9DE1 /* FallingObject.m */; settings = {ASSET_TAGS = (); }; };
 		E0767CEF1B928398007A9DE1 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEE1B928398007A9DE1 /* Shaders.metal */; settings = {ASSET_TAGS = (); }; };
+		E0DE1ED31BB376230010DDF0 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1ED21BB376230010DDF0 /* thumbnail.png */; settings = {ASSET_TAGS = (); }; };
 		E0EEC3EE1BA140B300E061D2 /* RainingCubesConfigureWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */; settings = {ASSET_TAGS = (); }; };
 		E0EEC3EF1BA140B300E061D2 /* RainingCubesConfigureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */; settings = {ASSET_TAGS = (); }; };
 		E0EEC3F01BA140B300E061D2 /* RainingCubesConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0EEC3ED1BA140B300E061D2 /* RainingCubesConfigureWindowController.xib */; settings = {ASSET_TAGS = (); }; };
@@ -29,6 +30,7 @@
 		E0767CEA1B9281A7007A9DE1 /* FallingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FallingObject.h; sourceTree = "<group>"; };
 		E0767CEB1B9281A7007A9DE1 /* FallingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallingObject.m; sourceTree = "<group>"; };
 		E0767CEE1B928398007A9DE1 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		E0DE1ED21BB376230010DDF0 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
 		E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RainingCubesConfigureWindowController.h; sourceTree = "<group>"; };
 		E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainingCubesConfigureWindowController.m; sourceTree = "<group>"; };
 		E0EEC3ED1BA140B300E061D2 /* RainingCubesConfigureWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RainingCubesConfigureWindowController.xib; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				E0767CEE1B928398007A9DE1 /* Shaders.metal */,
 				E0767CE81B928108007A9DE1 /* SIMDExtensions.h */,
 				E0767CE61B925D9E007A9DE1 /* Structs.h */,
+				E0DE1ED21BB376230010DDF0 /* thumbnail.png */,
 				E0767CE01B925C4C007A9DE1 /* Info.plist */,
 			);
 			path = RainingCubes;
@@ -151,6 +154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0DE1ED31BB376230010DDF0 /* thumbnail.png in Resources */,
 				E0EEC3F01BA140B300E061D2 /* RainingCubesConfigureWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
