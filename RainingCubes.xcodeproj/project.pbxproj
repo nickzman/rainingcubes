@@ -32,7 +32,7 @@
 		E0767CEB1B9281A7007A9DE1 /* FallingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FallingObject.m; sourceTree = "<group>"; };
 		E0767CEE1B928398007A9DE1 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		E0DE1ED21BB376230010DDF0 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
-		E0DE1ED71BB378450010DDF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RainingCubes.strings; sourceTree = "<group>"; };
+		E0DE1ED71BB378450010DDF0 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RainingCubes.strings; sourceTree = "<group>"; };
 		E0DE1EDA1BB378740010DDF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RainingCubesConfigureWindowController.xib; sourceTree = "<group>"; };
 		E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RainingCubesConfigureWindowController.h; sourceTree = "<group>"; };
 		E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainingCubesConfigureWindowController.m; sourceTree = "<group>"; };
