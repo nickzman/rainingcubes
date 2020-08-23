@@ -46,9 +46,9 @@
 	self.numberOfCubesSlider.integerValue = [defaults integerForKey:@"RCNumberOfCubes"];
 	self.numberOfCubesTxt.integerValue = self.numberOfCubesSlider.integerValue;
 	self.GPUTxt.stringValue = self.device.name;
-	self.preferDiscreteGPUButton.state = [defaults boolForKey:@"RCPreferDiscreteGPU"] ? NSOnState : NSOffState;
+	self.preferDiscreteGPUButton.state = [defaults boolForKey:@"RCPreferDiscreteGPU"] ? NSControlStateValueOn : NSControlStateValueOff;
 	self.preferDiscreteGPUButton.enabled = MTLCopyAllDevices().count > 1UL;	// disable the preferDiscreteGPUButton if there's only one GPU (since there's no point to the preference if there's more than one)
-	self.mainScreenOnlyButton.state = [defaults boolForKey:@"RCMainScreenOnly"] ? NSOnState : NSOffState;
+	self.mainScreenOnlyButton.state = [defaults boolForKey:@"RCMainScreenOnly"] ? NSControlStateValueOn : NSControlStateValueOff;
 	
 	self.versionAndCopyrightTxt.stringValue = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"Version %@, %@", @"RainingCubes", bundle, @"Template text used in the version/copyright label"), [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"], [bundle objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]];
 }
@@ -75,7 +75,7 @@
 {
 	ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass:self.class] bundleIdentifier]];
 	
-	[defaults setBool:[sender state] == NSOnState forKey:@"RCPreferDiscreteGPU"];
+	[defaults setBool:[sender state] == NSControlStateValueOn forKey:@"RCPreferDiscreteGPU"];
 }
 
 
@@ -83,7 +83,7 @@
 {
 	ScreenSaverDefaults *defaults = [ScreenSaverDefaults defaultsForModuleWithName:[[NSBundle bundleForClass:self.class] bundleIdentifier]];
 	
-	[defaults setBool:[sender state] == NSOnState forKey:@"RCMainScreenOnly"];
+	[defaults setBool:[sender state] == NSControlStateValueOn forKey:@"RCMainScreenOnly"];
 }
 
 

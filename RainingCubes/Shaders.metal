@@ -34,7 +34,7 @@ typedef struct {
 } ColorInOut;
 
 // Vertex shader function
-vertex ColorInOut lighting_vertex(device vertex_t* vertex_array [[ buffer(0) ]],
+vertex ColorInOut lighting_vertex(const device vertex_t* vertex_array [[ buffer(0) ]],
 								  constant uniforms_t& uniforms [[ buffer(1) ]],
 								  unsigned int vid [[ vertex_id ]])
 {

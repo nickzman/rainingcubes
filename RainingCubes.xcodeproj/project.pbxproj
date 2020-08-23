@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		E0767CDD1B925C4C007A9DE1 /* RainingCubesView.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CDC1B925C4C007A9DE1 /* RainingCubesView.h */; };
 		E0767CDF1B925C4C007A9DE1 /* RainingCubesView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0767CDE1B925C4C007A9DE1 /* RainingCubesView.m */; };
-		E0767CE71B925D9E007A9DE1 /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CE61B925D9E007A9DE1 /* Structs.h */; settings = {ASSET_TAGS = (); }; };
-		E0767CE91B928108007A9DE1 /* SIMDExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CE81B928108007A9DE1 /* SIMDExtensions.h */; settings = {ASSET_TAGS = (); }; };
-		E0767CEC1B9281A7007A9DE1 /* FallingObject.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CEA1B9281A7007A9DE1 /* FallingObject.h */; settings = {ASSET_TAGS = (); }; };
-		E0767CED1B9281A7007A9DE1 /* FallingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEB1B9281A7007A9DE1 /* FallingObject.m */; settings = {ASSET_TAGS = (); }; };
-		E0767CEF1B928398007A9DE1 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEE1B928398007A9DE1 /* Shaders.metal */; settings = {ASSET_TAGS = (); }; };
-		E0DE1ED31BB376230010DDF0 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1ED21BB376230010DDF0 /* thumbnail.png */; settings = {ASSET_TAGS = (); }; };
+		E0767CE71B925D9E007A9DE1 /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CE61B925D9E007A9DE1 /* Structs.h */; };
+		E0767CE91B928108007A9DE1 /* SIMDExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CE81B928108007A9DE1 /* SIMDExtensions.h */; };
+		E0767CEC1B9281A7007A9DE1 /* FallingObject.h in Headers */ = {isa = PBXBuildFile; fileRef = E0767CEA1B9281A7007A9DE1 /* FallingObject.h */; };
+		E0767CED1B9281A7007A9DE1 /* FallingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEB1B9281A7007A9DE1 /* FallingObject.m */; };
+		E0767CEF1B928398007A9DE1 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEE1B928398007A9DE1 /* Shaders.metal */; };
+		E0DE1ED31BB376230010DDF0 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1ED21BB376230010DDF0 /* thumbnail.png */; };
 		E0DE1ED61BB378450010DDF0 /* RainingCubes.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1ED81BB378450010DDF0 /* RainingCubes.strings */; };
 		E0DE1ED91BB378740010DDF0 /* RainingCubesConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1EDB1BB378740010DDF0 /* RainingCubesConfigureWindowController.xib */; };
-		E0EEC3EE1BA140B300E061D2 /* RainingCubesConfigureWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */; settings = {ASSET_TAGS = (); }; };
-		E0EEC3EF1BA140B300E061D2 /* RainingCubesConfigureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */; settings = {ASSET_TAGS = (); }; };
+		E0EEC3EE1BA140B300E061D2 /* RainingCubesConfigureWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */; };
+		E0EEC3EF1BA140B300E061D2 /* RainingCubesConfigureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 		E0767CEE1B928398007A9DE1 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		E0DE1ED21BB376230010DDF0 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
 		E0DE1ED71BB378450010DDF0 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RainingCubes.strings; sourceTree = "<group>"; };
-		E0DE1EDA1BB378740010DDF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RainingCubesConfigureWindowController.xib; sourceTree = "<group>"; };
+		E0E6813024F30E5400D79B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RainingCubesConfigureWindowController.xib; sourceTree = "<group>"; };
 		E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RainingCubesConfigureWindowController.h; sourceTree = "<group>"; };
 		E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainingCubesConfigureWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,7 +127,7 @@
 		E0767CD01B925C4C007A9DE1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Nick Zitzmann";
 				TargetAttributes = {
 					E0767CD81B925C4C007A9DE1 = {
@@ -137,10 +137,11 @@
 			};
 			buildConfigurationList = E0767CD31B925C4C007A9DE1 /* Build configuration list for PBXProject "RainingCubes" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E0767CCF1B925C4C007A9DE1;
 			productRefGroup = E0767CDA1B925C4C007A9DE1 /* Products */;
@@ -191,7 +192,7 @@
 		E0DE1EDB1BB378740010DDF0 /* RainingCubesConfigureWindowController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E0DE1EDA1BB378740010DDF0 /* en */,
+				E0E6813024F30E5400D79B49 /* Base */,
 			);
 			name = RainingCubesConfigureWindowController.xib;
 			sourceTree = "<group>";
@@ -203,17 +204,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -234,7 +247,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -245,17 +258,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -271,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};

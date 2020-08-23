@@ -72,6 +72,10 @@ float cubeVertexData[216] =
 	-0.5, 0.5, -0.5,  0.0, 0.0, -1.0
 };
 
+@interface RainingCubesView ()
+@property(atomic,assign) BOOL layerSizeDidUpdate;
+@end
+
 @interface RainingCubesView (Private)
 - (void)rc_loadAssets;
 - (void)rc_loadUserDefaults;
@@ -86,7 +90,6 @@ float cubeVertexData[216] =
 	// Using internal ivars instead of @properties for the best possible performance.
 	// Layer:
 	CAMetalLayer *_metalLayer;
-	BOOL _layerSizeDidUpdate;
 	MTLRenderPassDescriptor *_renderPassDescriptor;
 	
 	// Controller:
@@ -129,22 +132,7 @@ float cubeVertexData[216] =
 		[self setAnimationTimeInterval:1/60.0];
 		
 		// Does the user have OS X 10.11 or later installed?
-		if (MTLCopyAllDevices == NULL)
-		{
-			NSTextField *noMetalField = [[NSTextField alloc] initWithFrame:CGRectZero];
-			
-			noMetalField.stringValue = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"Your version of the OS does not support Metal.\n%@ requires OS X 10.11 or later.", @"RainingCubes", [NSBundle bundleForClass:self.class], @"Text we display to the user if they try running the screen saver on OS X Yosemite or earlier"), [[NSBundle bundleForClass:self.class] objectForInfoDictionaryKey:@"CFBundleName"]];
-			noMetalField.font = [NSFont systemFontOfSize:[NSFont systemFontSize]];
-			noMetalField.alignment = NSCenterTextAlignment;
-			noMetalField.textColor = [NSColor whiteColor];
-			noMetalField.drawsBackground = NO;
-			noMetalField.bezeled = NO;
-			noMetalField.editable = NO;
-			noMetalField.translatesAutoresizingMaskIntoConstraints = NO;
-			[self addSubview:noMetalField];
-			[self addConstraints:@[[NSLayoutConstraint constraintWithItem:noMetalField attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0], [NSLayoutConstraint constraintWithItem:noMetalField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]]];
-		}
-		else
+		if (@available(macOS 11.0, *))
 		{
 			NSArray *devices = MTLCopyAllDevices();
 			
@@ -155,7 +143,7 @@ float cubeVertexData[216] =
 				
 				noMetalField.stringValue = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"No Metal devices could be found.\n%@ requires a GPU that supports\nMetal in order to render.\nThis includes all Macs made since mid-2012.\nAlso, Metal won’t work in a VM.", @"RainingCubes", [NSBundle bundleForClass:self.class], @"Text we display to the user if they try running the screen saver on a computer with no Metal devices available"), [[NSBundle bundleForClass:self.class] objectForInfoDictionaryKey:@"CFBundleName"]];
 				noMetalField.font = [NSFont systemFontOfSize:[NSFont systemFontSize]];
-				noMetalField.alignment = NSCenterTextAlignment;
+				noMetalField.alignment = NSTextAlignmentCenter;
 				noMetalField.textColor = [NSColor whiteColor];
 				noMetalField.drawsBackground = NO;
 				noMetalField.bezeled = NO;
@@ -173,6 +161,21 @@ float cubeVertexData[216] =
 				[self rc_loadUserDefaults];	// load user defaults; create buffers
 				//[self rc_loadAssets];	// load the shaders; create buffers; set up pipeline & depth states
 			}
+		}
+		else
+		{
+			NSTextField *noMetalField = [[NSTextField alloc] initWithFrame:CGRectZero];
+			
+			noMetalField.stringValue = [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"Your version of the OS does not support Metal.\n%@ requires OS X 10.11 or later.", @"RainingCubes", [NSBundle bundleForClass:self.class], @"Text we display to the user if they try running the screen saver on OS X Yosemite or earlier"), [[NSBundle bundleForClass:self.class] objectForInfoDictionaryKey:@"CFBundleName"]];
+			noMetalField.font = [NSFont systemFontOfSize:[NSFont systemFontSize]];
+			noMetalField.alignment = NSTextAlignmentCenter;
+			noMetalField.textColor = [NSColor whiteColor];
+			noMetalField.drawsBackground = NO;
+			noMetalField.bezeled = NO;
+			noMetalField.editable = NO;
+			noMetalField.translatesAutoresizingMaskIntoConstraints = NO;
+			[self addSubview:noMetalField];
+			[self addConstraints:@[[NSLayoutConstraint constraintWithItem:noMetalField attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0], [NSLayoutConstraint constraintWithItem:noMetalField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]]];
 		}
 	}
 	return self;
@@ -194,6 +197,8 @@ float cubeVertexData[216] =
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow
 {
+	__weak RainingCubesView *weakSelf = self;
+	
 	[super viewWillMoveToWindow:newWindow];
 	
 	// If _mainScreenOnly is on, and this isn't the main screen, then shut down drawing by releasing the device:
@@ -208,7 +213,7 @@ float cubeVertexData[216] =
 	if (_screenChangeObserver)
 		[[NSNotificationCenter defaultCenter] removeObserver:_screenChangeObserver];
 	_screenChangeObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSWindowDidChangeBackingPropertiesNotification object:newWindow queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *aNotification) {
-		_layerSizeDidUpdate = YES;
+		weakSelf.layerSizeDidUpdate = YES;
 	}];
 }
 
@@ -278,17 +283,19 @@ CVReturn DisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp *in
 		}
 		
 		// If the frame size changed or we moved to a new screen, then update the drawable size to be appropriate for our bounds size * the screen's scale factor:
-		if (_layerSizeDidUpdate)
+		if (self.layerSizeDidUpdate)
 		{
-			CGFloat nativeScale = self.window.screen.backingScaleFactor;
-			CGSize drawableSize = self.bounds.size;
-			
-			drawableSize.width *= nativeScale;
-			drawableSize.height *= nativeScale;
-			_metalLayer.drawableSize = drawableSize;
-			
-			[self rc_reshape];
-			_layerSizeDidUpdate = NO;
+			dispatch_sync(dispatch_get_main_queue(), ^{
+				CGFloat nativeScale = self.window.screen.backingScaleFactor;
+				CGSize drawableSize = self.bounds.size;
+				
+				drawableSize.width *= nativeScale;
+				drawableSize.height *= nativeScale;
+				_metalLayer.drawableSize = drawableSize;
+				
+				[self rc_reshape];
+				self.layerSizeDidUpdate = NO;
+			});
 		}
 		
 		// Draw!

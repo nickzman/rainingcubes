@@ -1,6 +1,7 @@
 # Ignore Xcode stuff:
 build/*
-xcuserdata/
+RainingCubes.xcodeproj/project.xcworkspace/xcuserdata
+RainingCubes.xcodeproj/xcuserdata
 
 # Ignore Finder stuff:
 .DS_Store
