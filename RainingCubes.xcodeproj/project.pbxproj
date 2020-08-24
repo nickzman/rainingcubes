@@ -17,6 +17,16 @@
 		E0DE1ED31BB376230010DDF0 /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1ED21BB376230010DDF0 /* thumbnail.png */; };
 		E0DE1ED61BB378450010DDF0 /* RainingCubes.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1ED81BB378450010DDF0 /* RainingCubes.strings */; };
 		E0DE1ED91BB378740010DDF0 /* RainingCubesConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1EDB1BB378740010DDF0 /* RainingCubesConfigureWindowController.xib */; };
+		E0E6813824F32BF200D79B49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E6813724F32BF200D79B49 /* AppDelegate.swift */; };
+		E0E6813A24F32BF200D79B49 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E6813924F32BF200D79B49 /* ViewController.swift */; };
+		E0E6813C24F32BF300D79B49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0E6813B24F32BF300D79B49 /* Assets.xcassets */; };
+		E0E6813F24F32BF300D79B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0E6813D24F32BF300D79B49 /* Main.storyboard */; };
+		E0E6814524F32C1A00D79B49 /* FallingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEB1B9281A7007A9DE1 /* FallingObject.m */; };
+		E0E6814624F32C2200D79B49 /* RainingCubesConfigureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */; };
+		E0E6814724F32C2600D79B49 /* RainingCubesConfigureWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1EDB1BB378740010DDF0 /* RainingCubesConfigureWindowController.xib */; };
+		E0E6814824F32C2A00D79B49 /* RainingCubesView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0767CDE1B925C4C007A9DE1 /* RainingCubesView.m */; };
+		E0E6814924F32C2F00D79B49 /* RainingCubes.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0DE1ED81BB378450010DDF0 /* RainingCubes.strings */; };
+		E0E6814A24F32C3200D79B49 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = E0767CEE1B928398007A9DE1 /* Shaders.metal */; };
 		E0EEC3EE1BA140B300E061D2 /* RainingCubesConfigureWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */; };
 		E0EEC3EF1BA140B300E061D2 /* RainingCubesConfigureWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */; };
 /* End PBXBuildFile section */
@@ -34,12 +44,27 @@
 		E0DE1ED21BB376230010DDF0 /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
 		E0DE1ED71BB378450010DDF0 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RainingCubes.strings; sourceTree = "<group>"; };
 		E0E6813024F30E5400D79B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RainingCubesConfigureWindowController.xib; sourceTree = "<group>"; };
+		E0E6813524F32BF200D79B49 /* RainingCubesTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainingCubesTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0E6813724F32BF200D79B49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E0E6813924F32BF200D79B49 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E0E6813B24F32BF300D79B49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E0E6813E24F32BF300D79B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E0E6814024F32BF300D79B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0E6814124F32BF300D79B49 /* RainingCubesTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RainingCubesTest.entitlements; sourceTree = "<group>"; };
+		E0E6814B24F32D3900D79B49 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		E0EEC3EB1BA140B300E061D2 /* RainingCubesConfigureWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RainingCubesConfigureWindowController.h; sourceTree = "<group>"; };
 		E0EEC3EC1BA140B300E061D2 /* RainingCubesConfigureWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RainingCubesConfigureWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E0767CD51B925C4C007A9DE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0E6813224F32BF200D79B49 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				E0767CDB1B925C4C007A9DE1 /* RainingCubes */,
+				E0E6813624F32BF200D79B49 /* RainingCubesTest */,
 				E0767CDA1B925C4C007A9DE1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				E0767CD91B925C4C007A9DE1 /* RainingCubes.saver */,
+				E0E6813524F32BF200D79B49 /* RainingCubesTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +110,20 @@
 				E0767CE01B925C4C007A9DE1 /* Info.plist */,
 			);
 			path = RainingCubes;
+			sourceTree = "<group>";
+		};
+		E0E6813624F32BF200D79B49 /* RainingCubesTest */ = {
+			isa = PBXGroup;
+			children = (
+				E0E6813724F32BF200D79B49 /* AppDelegate.swift */,
+				E0E6813924F32BF200D79B49 /* ViewController.swift */,
+				E0E6813B24F32BF300D79B49 /* Assets.xcassets */,
+				E0E6813D24F32BF300D79B49 /* Main.storyboard */,
+				E0E6814024F32BF300D79B49 /* Info.plist */,
+				E0E6814124F32BF300D79B49 /* RainingCubesTest.entitlements */,
+				E0E6814B24F32D3900D79B49 /* BridgingHeader.h */,
+			);
+			path = RainingCubesTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,17 +162,41 @@
 			productReference = E0767CD91B925C4C007A9DE1 /* RainingCubes.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
+		E0E6813424F32BF200D79B49 /* RainingCubesTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0E6814224F32BF300D79B49 /* Build configuration list for PBXNativeTarget "RainingCubesTest" */;
+			buildPhases = (
+				E0E6813124F32BF200D79B49 /* Sources */,
+				E0E6813224F32BF200D79B49 /* Frameworks */,
+				E0E6813324F32BF200D79B49 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RainingCubesTest;
+			productName = RainingCubesTest;
+			productReference = E0E6813524F32BF200D79B49 /* RainingCubesTest.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E0767CD01B925C4C007A9DE1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Nick Zitzmann";
 				TargetAttributes = {
 					E0767CD81B925C4C007A9DE1 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 8D98N325TG;
+						ProvisioningStyle = Automatic;
+					};
+					E0E6813424F32BF200D79B49 = {
+						CreatedOnToolsVersion = 12.0;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -149,6 +214,7 @@
 			projectRoot = "";
 			targets = (
 				E0767CD81B925C4C007A9DE1 /* RainingCubes */,
+				E0E6813424F32BF200D79B49 /* RainingCubesTest */,
 			);
 		};
 /* End PBXProject section */
@@ -164,6 +230,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E0E6813324F32BF200D79B49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0E6813C24F32BF300D79B49 /* Assets.xcassets in Resources */,
+				E0E6814724F32C2600D79B49 /* RainingCubesConfigureWindowController.xib in Resources */,
+				E0E6814924F32C2F00D79B49 /* RainingCubes.strings in Resources */,
+				E0E6813F24F32BF300D79B49 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -175,6 +252,19 @@
 				E0767CED1B9281A7007A9DE1 /* FallingObject.m in Sources */,
 				E0EEC3EF1BA140B300E061D2 /* RainingCubesConfigureWindowController.m in Sources */,
 				E0767CDF1B925C4C007A9DE1 /* RainingCubesView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0E6813124F32BF200D79B49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0E6814A24F32C3200D79B49 /* Shaders.metal in Sources */,
+				E0E6813A24F32BF200D79B49 /* ViewController.swift in Sources */,
+				E0E6813824F32BF200D79B49 /* AppDelegate.swift in Sources */,
+				E0E6814624F32C2200D79B49 /* RainingCubesConfigureWindowController.m in Sources */,
+				E0E6814524F32C1A00D79B49 /* FallingObject.m in Sources */,
+				E0E6814824F32C2A00D79B49 /* RainingCubesView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +285,14 @@
 				E0E6813024F30E5400D79B49 /* Base */,
 			);
 			name = RainingCubesConfigureWindowController.xib;
+			sourceTree = "<group>";
+		};
+		E0E6813D24F32BF300D79B49 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E0E6813E24F32BF300D79B49 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -305,11 +403,15 @@
 		E0767CE41B925C4C007A9DE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8D98N325TG;
 				INFOPLIST_FILE = RainingCubes/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_BUNDLE_IDENTIFIER = net.comcast.home.seiryu.RainingCubes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -317,12 +419,72 @@
 		E0767CE51B925C4C007A9DE1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8D98N325TG;
 				INFOPLIST_FILE = RainingCubes/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_BUNDLE_IDENTIFIER = net.comcast.home.seiryu.RainingCubes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = saver;
+			};
+			name = Release;
+		};
+		E0E6814324F32BF300D79B49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = RainingCubesTest/RainingCubesTest.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = RainingCubesTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.comcast.home.seiryu.RainingCubesTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = RainingCubesTest/BridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E0E6814424F32BF300D79B49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = RainingCubesTest/RainingCubesTest.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = RainingCubesTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.comcast.home.seiryu.RainingCubesTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = RainingCubesTest/BridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -343,6 +505,15 @@
 			buildConfigurations = (
 				E0767CE41B925C4C007A9DE1 /* Debug */,
 				E0767CE51B925C4C007A9DE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E0E6814224F32BF300D79B49 /* Build configuration list for PBXNativeTarget "RainingCubesTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0E6814324F32BF300D79B49 /* Debug */,
+				E0E6814424F32BF300D79B49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

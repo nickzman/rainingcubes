@@ -238,6 +238,7 @@ CVReturn DisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeStamp *in
 		CVDisplayLinkCreateWithCGDisplay(screensID, &_timer);
 		CVDisplayLinkSetOutputCallback(_timer, DisplayLinkCallback, (__bridge void *)self);
 	}
+	[self rc_reshape];
 	CVDisplayLinkStart(_timer);
 	_firstDrawOccurred = NO;	// reset the draw timer every time the animation restarts
 }
