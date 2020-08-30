@@ -131,8 +131,8 @@ float cubeVertexData[216] =
 	{
 		[self setAnimationTimeInterval:1/60.0];
 		
-		// Does the user have OS X 10.11 or later installed?
-		if (@available(macOS 11.0, *))
+		// Metal requires macOS 10.11. Does the user have that or later installed?
+		if (@available(macOS 10.11, *))
 		{
 			NSArray *devices = MTLCopyAllDevices();
 			
